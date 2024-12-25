@@ -1,0 +1,19 @@
+name: Fetch Changes from Remote Repo
+
+on:
+    schedule:
+        - cron: '0 * * * *' # Runs every hour
+
+jobs:
+    fetch-changes:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Fetch changes from remote
+          run: git fetch origin
+
+        - name: Pull changes to local
+          run: git pull origin main
